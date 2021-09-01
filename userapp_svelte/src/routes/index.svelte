@@ -23,7 +23,8 @@
 	  return [];
 	});
 	onMount(async () => {
-	  fetch("http://127.0.0.1:8000/dashboard")
+	//   fetch("http://10.10.6.73/dashboard")
+	fetch('http://127.0.0.1:8000/dashboard')
 	  .then(response => response.json())
 	  .then(data => {
 			console.log(data);

@@ -1,19 +1,23 @@
 <script>
     import {goto} from "$app/navigation"
+import { post } from "./todos/index.json";
     let email ='', password =''
 
     const submit = async () => {
-        await fetch('http://127.0.0.1:8000/loginview', {
-            method : 'POST',
-            headers : {'content-type':'application/json'},
-            credentials : 'include',
-            body : JSON.stringify({
+        // await fetch('http://10.10.6.73/loginview', {
+            await fetch("http://localhost:8000/api/login/", {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            credentials: 'include',
+            // credentials: true,
+            body: JSON.stringify({
                 email,
                 password
             })
+            
         });
 
-        await goto("/data")
+        await goto("/sequenceddata");
     }
 
     
@@ -38,7 +42,7 @@
             <i class="far fa-eye-slash" id="togglePassword" ></i>
         </div>
         </div>
-        <div class="column is-fullwidth"><button class="button is-primary is-fullwidth">Sign in</button></div>
+        <div class="column is-fullwidth"><button class="button is-primary is-fullwidth" type="submit">Sign in</button></div>
         <div>Don't have an account? <a href="/Registration">Register</a></div>
     </form>
 </div>
