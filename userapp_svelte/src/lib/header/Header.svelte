@@ -6,11 +6,7 @@
         burgerIcon.addEventListener('click', () => {
           navbarMenu.classList.toggle('is-active');
         });
-
   });
-
-
-
 	import { page } from '$app/stores';
 	// import { authenticated } from "/home/icgc_sub/Desktop/svelteproject/userapp_svelte/src/lib/header/stores/auth.js";
 	// // import {authenticated} from '/home/icgc_sub/Desktop/svelteproject/userapp_svelte/src/stores/auth.js'
@@ -20,18 +16,11 @@
     // let email ='', password =''
 
     const logout = async () => {
-        // await fetch('http://10.10.6.73/logoutview', {
-			await fetch('http://127.0.0.1:8000/logoutview', {
+        await fetch('http://localhost:8000/api/logoutview', {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             credentials: 'include',
-            // body: JSON.stringify({
-            //     email,
-            //     password
-            // })
-            
         });
-
         await goto("/")
     }
 </script>
@@ -42,7 +31,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" >
 	<!-- //web font -->
 	</head>
-	<nav class="navbar has-shadow is-dark is-fixed-top">
+	<nav class="navbar has-shadow">
 		<a class="navbar-burger" id="burger">
 			<span></span>
 			<span></span>
@@ -56,7 +45,7 @@
 					<a class:active={$page.path === '/Login'} class="navbar-item" sveltekit:prefetch href="/Login">Login</a>
 					<a href="/#/" class="navbar-item" on:click={logout}>Logout</a>
 					<a class:active={$page.path === '/'} class="navbar-item" sveltekit:prefetch href="/">Dashboard</a>
-					<a class:active={$page.path === '/sequenceddata'} class="navbar-item" sveltekit:prefetch href="sequenceddata/">Home</a>
+					<a class:active={$page.path === '/sequenceddata'} class="navbar-item" sveltekit:prefetch href="/sequenceddata">Home</a>
 					<!-- <a class="navbar-item" href="product">About product</a>
 					<a class="navbar-item" class:active={$page.path === '/'} sveltekit:prefetch href="/">Home</a>
 					<a class:active={$page.path === '/about'} sveltekit:prefetch href="/about">About</a>

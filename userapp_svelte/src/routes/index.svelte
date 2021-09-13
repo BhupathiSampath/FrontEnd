@@ -16,15 +16,21 @@
 	Here, we'll create a derived store to hold the drink names.
 	**/
 	export const Data = derived(apiData, ($apiData) => {
-	  if ($apiData.data){
+	  if ($apiData.data) {
 		// return $apiData.data.map(username => username.username);
 		return $apiData.data;
 	  }
 	  return [];
 	});
+	export const Data1 = derived(apiData, ($apiData) => {
+	  if ($apiData.data1) {
+		// return $apiData.data.map(username => username.username);
+		return $apiData.data1;
+	  }
+	  return [];
+	});
 	onMount(async () => {
-	//   fetch("http://10.10.6.73/dashboard")
-	fetch('http://127.0.0.1:8000/dashboard')
+	  fetch("http://localhost:8000/api/dashboard")
 	  .then(response => response.json())
 	  .then(data => {
 			console.log(data);
@@ -60,10 +66,15 @@
 	<!-- <Router routes={{
 		'/login': Login,
 		'/registration': registration}} /> -->
-	<div class="container"><h1 class="is-size-3 has-text-centered has-text-weight-bold">Dashboard</h1></div>
-	<div class="table-container">
-	<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-		<thead class="has-text-centered">
+        <div class="box">
+		<div class="column">
+        
+        <section class="hero">
+            <div class="hero-body">
+			<h1 class="title">Dashboard</h1>
+                <div class="table-container">
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                      <thead id="head" class="has-text-centered">
 			<tr>
 				<th rowspan="2">Username</th>
 				<th rowspan="2">Date</th>
@@ -95,9 +106,25 @@
 				<td>{data.Any_collaboration}</td>
 			</tr>
 			{/each}
+			{#each $Data1 as data}
+			<tr>
+				<td>{data.username}</td>
+				<td>null</td>
+				<td>null</td>
+				<td>null</td>
+				<td>null</td>
+				<td>null</td>
+				<td>null</td>
+				<td>null</td>
+				<td>null</td>
+			</tr>
+			{/each}
 		</tbody>
 	</table>
-	</div>
+        </div>
+    </section>
+    </div>
+    </div>
 	
 	
 	
